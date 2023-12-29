@@ -55,9 +55,10 @@ kafka-avro-console-consumer --bootstrap-server <CC Bootstrap Server> --consumer.
 ## Important Notes
 
 * Only configure the `--cluster.id` for each Replicator, no `client.id` or `group.id` when running Replicator as an executable.
-* The internal topics (config, offset, status) will be created on the destination cluster. If you want to have the internal topics created on the source cluster we need to create the Replicator.
+* The internal topics (config, offset, status) will be created on the destination cluster. If you want to have the internal topics created on the source cluster we need to create the Replicator
   as a Connector.
 * Do not sync the topic configuration.
 * We connect the `src.value.converter` with the local SR, whereas the `value.converter` is connected to the CC SR.
+* The used SA has full permissions, to restrict it following the least privilege guidance, see the corresponding [ACLs documentation](https://docs.confluent.io/platform/current/multi-dc-deployments/replicator/index.html#acls-to-write-to-the-destination-cluster)
 
 For more information check out [replicator.properties](./Replicator/replicator.properties).
